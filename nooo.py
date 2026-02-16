@@ -1,4 +1,4 @@
-#para que funcione deben copiar el text del canntar del mio ced en la carpeta del proyecto
+#para que funcione deben copiar el text del quijote ced en la carpeta del proyecto
 
 import mido
 from mido import Message, MetaMessage, MidiFile, MidiTrack, bpm2tempo, second2tick
@@ -12,20 +12,24 @@ track.append(MetaMessage('set_tempo', tempo=bpm2tempo(127)))
 track.append(MetaMessage('time_signature', numerator=6, denominator=8))
 track.append(Message('program_change', program=12, time=10))
 
-def cantar_mio_cid():
+def Quijote():
     # listas para almacenar los valores ascii y midi
+    listica = []
     listica_ascii = []
     listica_midi = []
 
   # lectura del archivo de texto y conversion a ascii y suma de los valores ascii para cada linea, luego normalizacion de estos valores a un rango de 0 a 127 para convertirlos en notas midi
-    with open('Cantar-Mio-Cid.txt', 'r', encoding='utf-8') as archivo:
+    with open('Don Quijote de la Mancha - Miguel de Cervantes Saavedra Adap Trapiello (arreglado 2).txt', 'r', encoding='utf-8') as archivo:
      for i in archivo:
-         ascii_lista = [ord(c) for c in i]
-         valor_ascii = sum(ascii_lista)
-         listica_ascii.append(valor_ascii)
+         listica = i.split(".")
+         print(listica)
+         for j in listica:
+             ascii_lista = [ord(c) for c in j ]
+             valor_ascii = sum(ascii_lista)
+             listica_ascii.append(valor_ascii)
 
-     min_valor = min(listica_ascii)
-     max_valor = max(listica_ascii)
+    min_valor = min(listica_ascii)
+    max_valor = max(listica_ascii)
 
  # conversion de los valores ascii a midi utilizando la formula de normalizacion 
     for i in listica_ascii:
@@ -38,7 +42,6 @@ def cantar_mio_cid():
         track.append(Message('note_off', channel=2, note=1, velocity=i, time=2))
 
  #guardado del archivo midi
-    mid.save('cantar_mio_cid.mid')
-    
+    mid.save('Quijote.mid')
 
-cantar_mio_cid()
+Quijote()
