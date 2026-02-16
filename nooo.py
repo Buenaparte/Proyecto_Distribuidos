@@ -2,6 +2,7 @@
 
 import mido
 from mido import Message, MetaMessage, MidiFile, MidiTrack, bpm2tempo, second2tick
+from puerto_midi import enviar_midi
 
 # medios para crear una archivo midi ademas de elementos basicos para que suene este archivo
 mid = MidiFile()
@@ -35,6 +36,9 @@ def Quijote():
     for i in listica_ascii:
         valor_midi = ((i-min_valor)/(max_valor-min_valor))*127
         listica_midi.append(int(valor_midi))
+
+        # en tiempo real se envia la nota midi utilizando la funcion enviar_midi del puerto_midi.py
+        enviar_midi(int(valor_midi))
 
  # creacion de las notas midi utilizando la lista de valores midi antes normalizados
     for i in listica_midi:
