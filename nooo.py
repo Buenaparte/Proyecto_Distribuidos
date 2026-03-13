@@ -1,9 +1,12 @@
 #para que funcione deben copiar el text del quijote ced en la carpeta del proyecto
-
+import socket
 import mido
 from mido import Message, MetaMessage, MidiFile, MidiTrack, bpm2tempo, second2tick
 from puerto_midi import enviar_midi
 
+
+HOST = '127.0.0.1'  # Dirección IP del servidor
+PORT = 5000       # Puerto del servidor
 # medios para crear una archivo midi ademas de elementos basicos para que suene este archivo
 mid = MidiFile()
 track = MidiTrack()
@@ -47,5 +50,20 @@ def Quijote():
 
  #guardado del archivo midi
     mid.save('Quijote.mid')
+
+def conexion ():
+     while True:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+         try:
+                 s.connect((HOST, PORT))
+                 mensaje =  "Ya esta sonando el Quijote"
+                 s.sendall(mensaje.encode('utf-8'))  # Envía el mensaje al servidor
+                 data = s.recv(1024)  # Recibe la respuesta del servidor
+                 print(f"Cliente recibió: {data.decode('utf-8')}")
+
+         except socket.error as e:
+             print(f"Error de conexión: {e}")
+             break
+
 
 Quijote()
