@@ -8,6 +8,8 @@ PORT = 5000       # Puerto de escucha del servidor
 def on_new_client(conn, addr):
          #print(f"Conectado por {addr}")
          data = conn.recv(1024)  # Recibe hasta 1024 bytes de datos
+         preparados = f"Comenzando procesamiento de los txt a midi".encode('utf-8')
+         conn.sendall(preparados)  # Envía una respuesta al cliente
          if data:
              mensaje_recibido = data.decode('utf-8')
              print(f"Servidor recibió: {mensaje_recibido}")

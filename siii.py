@@ -57,6 +57,8 @@ def conexion ():
                  s.sendall(mensaje.encode('utf-8'))  # Envía el mensaje al servidor
                  data = s.recv(1024)  # Recibe la respuesta del servidor
                  print(f"Cliente recibió: {data.decode('utf-8')}")
+                 data2 = s.recv(1024)  # Recibe la respuesta del servidor
+                 print(f"Cliente recibió: {data2.decode('utf-8')}")
 
          except socket.error as e:
              print(f"Error de conexión: {e}")
