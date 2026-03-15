@@ -49,7 +49,7 @@ def cantar_mio_cid():
     conexion()
 
 def conexion ():
-     while True:
+     #while True:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
          try:
                  s.connect((HOST, PORT))
@@ -60,7 +60,7 @@ def conexion ():
 
          except socket.error as e:
              print(f"Error de conexión: {e}")
-             break
+             #break
 
 
 cantar_mio_cid()

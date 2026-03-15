@@ -26,7 +26,7 @@ def Quijote():
     with open('Don Quijote de la Mancha - Miguel de Cervantes Saavedra Adap Trapiello (arreglado 2).txt', 'r', encoding='utf-8') as archivo:
      for i in archivo:
          listica = i.split(".")
-         print(listica)
+         #print(listica)
          for j in listica:
              ascii_lista = [ord(c) for c in j ]
              valor_ascii = sum(ascii_lista)
@@ -41,7 +41,7 @@ def Quijote():
         listica_midi.append(int(valor_midi))
 
         # en tiempo real se envia la nota midi utilizando la funcion enviar_midi del puerto_midi.py
-        enviar_midi(int(valor_midi))
+        #enviar_midi(int(valor_midi))
 
  # creacion de las notas midi utilizando la lista de valores midi antes normalizados
     for i in listica_midi:
@@ -50,9 +50,10 @@ def Quijote():
 
  #guardado del archivo midi
     mid.save('Quijote.mid')
+    conexion()
 
 def conexion ():
-     while True:
+     #while True:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
          try:
                  s.connect((HOST, PORT))
@@ -63,7 +64,7 @@ def conexion ():
 
          except socket.error as e:
              print(f"Error de conexión: {e}")
-             break
+             #break
 
 
 Quijote()
