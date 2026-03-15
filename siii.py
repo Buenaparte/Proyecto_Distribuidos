@@ -37,7 +37,7 @@ def cantar_mio_cid():
         listica_midi.append(int(valor_midi))
 
         # en tiempo real se envia la nota midi utilizando la funcion enviar_midi del puerto_midi.py
-        enviar_midi(int(valor_midi))
+        #enviar_midi(int(valor_midi))
 
  # creacion de las notas midi utilizando la lista de valores midi antes normalizados
     for i in listica_midi:
@@ -46,6 +46,7 @@ def cantar_mio_cid():
 
  #guardado del archivo midi
     mid.save('cantar_mio_cid.mid')
+    conexion()
 
 def conexion ():
      while True:
